@@ -8,6 +8,11 @@ enableRobotsTXT = true
 enableEmoji = true
 theme = "jane"
 
+pygmentsUseClasses = true
+pygmentsCodeFences = true
+pygmentsCodefencesGuessSyntax = true
+pygmentsOptions = "linenos=table"
+
 hasCJKLanguage = true     # has chinese/japanese/korean ? # 自动检测是否包含 中文\日文\韩文
 paginate = 5              # Number of articles displayed on the homepage  # 首页每页显示的文章数
 rssLimit = 20             # Limit Entry Count to Rss file # 限制 Rss 文章输出数量
@@ -91,3 +96,10 @@ defaultContentLanguage = "zh-tw"           # Default language to use
     o-goodreads = "http://localhost:1313"
     p-coding = "http://localhost:1313"
     q-bilibili = "http://localhost:1313"
+
+[params.gitalk]
+  owner = "yating00000"
+  admin = "yating00000"
+  repo = "blogtalk"
+  clientId = "bc69af44bb903f4f900d"
+  clientSecret = "186eda9feec724d7db2ec1b0ef4ef070217bb4f4"

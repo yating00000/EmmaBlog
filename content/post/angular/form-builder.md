@@ -8,6 +8,8 @@ tags: [
 categories: [
     "angular",
 ]
+comment: true
+gitalk: true
 ---
 
 - 一般用法
@@ -19,7 +21,7 @@ categories: [
 
 在 detail.component.html
 
-```
+```js
 <form [formGroup]="form">
   //account
   <div>
@@ -41,6 +43,7 @@ categories: [
   </button>
 </form>
 ```
+
 
 - 在使用 FormBuilder 的情況下,`<form>`標籤一定要寫,
   並標註`[formGroup]`
