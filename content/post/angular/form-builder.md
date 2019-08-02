@@ -19,7 +19,7 @@ comment: true
 # 一般用法
 
 在 detail.component.html
-
+1111111
 ```js
 <form [formGroup]="form">
   //account
