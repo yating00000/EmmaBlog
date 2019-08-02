@@ -9,7 +9,6 @@ categories: [
     "angular",
 ]
 comment: true
-gitalk: true
 ---
 
 - 一般用法

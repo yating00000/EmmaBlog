@@ -78,6 +78,13 @@ defaultContentLanguage = "zh-tw"           # Default language to use
   customCSS = []            # if ['custom.css'], load '/static/css/custom.css' file
   customJS = []             # if ['custom.js'], load '/static/js/custom.js' file
 
+  [params.gitalk]
+    owner = "yating00000"
+    admin = "yating00000"
+    repo = "gitalk"
+    clientId = "bc69af44bb903f4f900d"
+    clientSecret = "186eda9feec724d7db2ec1b0ef4ef070217bb4f4"
+
   [params.social]                                         # 社交链接
     a-email = "mailto:your@email.com"
     b-stack-overflow = "http://localhost:1313"
@@ -97,9 +104,4 @@ defaultContentLanguage = "zh-tw"           # Default language to use
     p-coding = "http://localhost:1313"
     q-bilibili = "http://localhost:1313"
 
-[params.gitalk]
-  owner = "yating00000"
-  admin = "yating00000"
-  repo = "blogtalk"
-  clientId = "bc69af44bb903f4f900d"
-  clientSecret = "186eda9feec724d7db2ec1b0ef4ef070217bb4f4"
+
