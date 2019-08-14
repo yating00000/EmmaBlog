@@ -2,12 +2,22 @@
 date: 2018-12-11 17:38:48
 title: 表單驗證3-FormBuilder
 tags: [
-    "angular",
-    "實作心得"
+  "angular",
+  "實作心得"
 ]
 categories: [
-    "angular",
+  "angular",
 ]
+keywords:
+  [
+    "angular",
+    "form",
+    "validator",
+    "formbuilder",
+    "FormControl",
+    "formGroup",
+    "formControlName"
+  ]
 comment: true
 ---
 
@@ -18,9 +28,12 @@ comment: true
 
 # 一般用法
 
-在 detail.component.html
-1111111
-```js
+- 在 detail.component.html
+
+> 在使用 FormBuilder 的情況下,`<form>`標籤一定要寫,
+並標註`[formGroup]`
+
+```html
 <form [formGroup]="form">
   //account
   <div>
@@ -36,64 +49,40 @@ comment: true
   <validation-messages [control]="form.controls.passowrd">
   </validation-messages>
 
-  <button mat-button (click)="enter()" [disabled]="!form.valid"
+  <button mat-button (click)="enter()" 
+      [disabled]="!form.valid"
       [ngClass]="{ disable: !form.valid }">
       {{ "enter" | translate }}
   </button>
 </form>
 ```
 
-
-- 在使用 FormBuilder 的情況下,`<form>`標籤一定要寫,
-  並標註`[formGroup]`
-
-在 detail.component.ts
+- 在 detail.component.ts
 
 ```js
 export class DetailComponent implements OnInit {
   form: FormGroup;
 
-  constructor(
-    private fb: FormBuilder
-  ) {}
+  constructor(private fb: FormBuilder) {}
 
   ngOnInit() {
     this.createForm();
   }
 
-   createForm() {
+  createForm() {
     let obj = {
       skype: ["", [Validators.required]],
       phone: [""],
     };
-    if (this.type=="insert") {
-      obj["account"] = [
-        "",
-        [
-          Validators.required,
-          Validators.minLength(6)
-        ]
-      ];
-      obj["password"] = [
-        "",
-        [
-          Validators.required,
-          Validators.minLength(6)
-        ]
-      ];
-    }
     this.form = this.fb.group(obj);
   }
 }
 ```
+> 第一個參數則是預設值,第二個參數是檢驗器並以陣列呈現,
+（第三個參數是動態驗證的檢驗器可不填）
+常見的必填`required`或 長度`minLength`以陣列方式放在第二個參數
 
-- 通常寫表單功能都會出現在新增或更新頁面,部分欄位是不能跟新的,
 
-所以把 Object 動態加上需要的欄位,在塞到 FormGroup 裡
-
-- 常見的必填`required`或 長度`minLength`以陣列方式放在第二個參數,
-
-第一個參數則是預設值
 
 ## 改變預設值
 
@@ -109,6 +98,7 @@ let obj = {
 - 但常見的情況是在更新資料時接到從後端傳回的封包才能塞值
 
 ```js
+//this.data => 後端送的值
 ngOnInit() {
   this.createForm();
   if (!!this.data) {
@@ -121,43 +111,25 @@ createForm() {
     skype: ["", [Validators.required]],
     phone: [""],
   };
-  if (this.type=="insert") {
-    obj["account"] = [
-      "",
-      [
-        Validators.required,
-        Validators.minLength(6)
-      ]
-    ];
-    obj["password"] = [
-      "",
-      [
-        Validators.required,
-        Validators.minLength(6)
-      ]
-    ];
-  }
   this.form = this.fb.group(obj);
 }
 
-initSetForm(r) {
-  if (!!r) {
+initSetForm(data) {
+  if (!!data) {
     this.form.setValue({
-      skype: r.skype || "",
-      phone: r.phone || "",
+      skype: data.skype || "",
+      phone: data.phone || "",
     });
   }
 }
 ```
-
----
 
 # 把驗證方法封裝跟使用
 
 因為表單欄位需要驗證的地方很多,
 所以我們會做 service 來裝驗證的方法
 
-在 validation.service.ts
+- 在 validation.service.ts
 
 ```js
 import { FormControl } from "@angular/forms";
@@ -190,39 +162,36 @@ export class ValidationService {
 }
 ```
 
-在 detail.component.ts
+- 在 detail.component.ts
 
 ```js
 createForm() {
     let obj = {
       skype: ["", [Validators.required]],
       phone: [""],
-    };
-    if (this.type=="insert") {
-      obj["account"] = [
-        "",
-        [
-          Validators.required,
-          ValidationService.userValidator,
-          Validators.minLength(6)
+      account = ["",
+          [
+            Validators.required,
+            ValidationService.userValidator,
+            Validators.minLength(6)
+          ]
+        ],
+      password = ["",
+          [
+            Validators.required,
+            ValidationService.passwordValidator,
+            Validators.minLength(6)
+          ]
         ]
-      ];
-      obj["password"] = [
-        "",
-        [
-          Validators.required,
-          ValidationService.passwordValidator,
-          Validators.minLength(6)
-        ]
-      ];
+      };
     }
     this.form = this.fb.group(obj);
   }
 ```
 
-在 detail.component.html
+- 在 detail.component.html
 
-```
+```html
 //account
 <div>
   <input type="text" formControlName="account"/>
@@ -238,11 +207,9 @@ createForm() {
 </validation-messages>
 ```
 
----
-
 # 常見情境-確認密碼 Confirm Password
 
-在 validation.service.ts
+- 在 validation.service.ts
 
 ```js
 import { FormControl } from "@angular/forms";
@@ -261,7 +228,6 @@ export class ValidationService {
   }
 
   static userValidator(control: FormControl) {
-    console.log(control.value);
     //英數字+@
     if (
       !!control.value &&
@@ -306,29 +272,26 @@ export class ValidationService {
 }
 ```
 
-在 user-detail.component.ts
+- 在 user-detail.component.ts
 
 ```js
 createForm() {
     let obj = {
-      oldP: [
-        "",
+      oldP: ["",
         [
           Validators.required,
           ValidationService.passwordValidator,
           Validators.minLength(6)
         ]
       ],
-      newP: [
-        "",
+      newP: ["",
         [
           Validators.required,
           ValidationService.passwordValidator,
           Validators.minLength(6)
         ]
       ],
-      repeatP: [
-        "",
+      repeatP: ["",
         [Validators.required, ValidationService.matchingPasswords("newP")]
       ]
     };

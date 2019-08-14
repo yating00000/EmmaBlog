@@ -1,19 +1,21 @@
 ---
-title: 路由守衛
-abbrlink: 74878da8
 date: 2018-12-14 15:19:09
-categories:
-  - angular
-tags:
-  - angular
-  - 實作心得
-keywords:
-  - angular
-  - angular6
-  - route
-  - guard
-  - Observable
-description:
+title: 路由守衛
+tags: [
+  "angular",
+  "實作心得"
+]
+categories: [
+  "angular",
+]
+keywords: [
+    "angular",
+    "route",
+    "路由",
+    "guard",
+    "Observable"
+]
+comment: true
 ---
 
 - 一般用法
@@ -56,7 +58,7 @@ export class AppService {
 }
 ```
 
-在RouteModule裡
+- 在RouteModule裡
 
 ```js
 const routes: Routes = [
@@ -76,17 +78,19 @@ const routes: Routes = [
 export class CoreRoutingModule {}
 ```
 
----
-
 # 以`Observable`方式回傳
 
 實務上通常都要等後端送使用者資訊回來,
+
 才能確定裡面內容都可以看,
+
 至於何時送回來呢
+
 guard.service 以訂閱的方式來接
 
+- login service.ts
+
 ```js
-//login service
 @Injectable()
 export class LoginService {
   private loginSubject = new Subject<boolean>();
@@ -105,9 +109,9 @@ export class LoginService {
 }
 ```
 
+- app.component.ts
 
 ```js
-//app component
 @Component({
   selector: "app-root",
   templateUrl: "./app.component.html",
@@ -127,6 +131,8 @@ export class AppComponent implements OnInit {
 }
 ```
 
+- app.service.ts
+
 ```js
 @Injectable()
 export class AppService {
@@ -143,8 +149,9 @@ export class AppService {
 
 代表有權限登入,並觸發訂閱
 
+- guard.service.ts
+
 ```js
-//guard service
 @Injectable()
 export class GuardService implements CanActivate {
     constructor(

@@ -1,17 +1,19 @@
 ---
-title: attr
-categories:
-  - angular
-tags:
-  - angular
-  - 實作心得
-keywords:
-  - angular
-  - angular6
-  - angular attr
-abbrlink: 4b1b4fc6
 date: 2018-12-26 11:30:13
-description:
+title: attr
+tags: [
+  "angular",
+  "實作心得"
+]
+categories: [
+  "angular",
+]
+keywords:
+  [
+    "angular",
+    "attr",
+  ]
+comment: true
 ---
 
 - 在 angular 裡使用 `attr`
@@ -22,10 +24,11 @@ description:
 # 在 angular 裡使用 `attr`
 
 一般我們都會做 html 的屬性綁定,如: `[attr.colspan]`
+
 或是 value 不夠用時,要多增加一個自訂參數,
+
 如: `[attr.change-val]` change-val 是我自訂的
 
----
 
 # 常見情境-響應式 Table
 
@@ -70,8 +73,7 @@ http://lab.25sprout.com/responsive_table/
 </table>
 ```
 
-```js
-//css
+```css
 @media only screen and (max-width: 767px) {
   .table {
     display: block;
@@ -117,7 +119,6 @@ http://lab.25sprout.com/responsive_table/
   }
 }
 ```
----
 
 # 常見情境-直接在列表上更新
 	
@@ -125,9 +126,11 @@ http://lab.25sprout.com/responsive_table/
 
 
 在實務上有時候我們只需要改少數幾個欄位,
+
 不見得會另做一頁表單式,
 
 所以作法上就是在html元素上綁上自訂義的值,
+
 在用監聽的方式,一但按下(click)後就開始做更新修改的事情
 
 ```js
@@ -205,7 +208,7 @@ export class AppComponent implements OnInit, OnDestroy {
 }
 ```
 
-```
+```html
 <div class="flex">
   <div>
     <span [attr.change-val]="1" *ngIf="selectID != 1">{{ a }}</span>
@@ -234,9 +237,7 @@ export class AppComponent implements OnInit, OnDestroy {
 </div>
 ```
 
-```
-//css
-
+```css
 .flex{
   display: flex;
 }

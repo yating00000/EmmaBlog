@@ -1,19 +1,25 @@
 ---
-title: 表單驗證2-ngModel
-categories:
-  - angular
-tags:
-  - angular
-  - 實作心得
-keywords:
-  - angular
-  - angular6
-  - form
-  - validator
-  - directive
-abbrlink: b98fb95d
 date: 2018-12-10 15:00:00
-description:
+title: 表單驗證2-ngModel
+tags: [
+  "angular",
+  "實作心得"
+]
+categories: [
+  "angular",
+]
+keywords:
+  [
+    "angular",
+    "form",
+    "validator",
+    "validate",
+    "FormControl",
+    "formGroup",
+    "formControlName",
+    "directive"
+  ]
+comment: true
 ---
 
 - 簡單的 html 驗證
@@ -22,8 +28,11 @@ description:
 - 備註:模板變數(#name) ngIf 與 hidden
   <!--more-->
 
-因實作過程中,很多功能模塊都會用到,
-因此顯示錯誤的 function 都會統一放在子組件,
+> 因實作過程中,很多功能模塊都會用到,
+
+> 因此顯示錯誤的 function 都會統一放在子組件
+
+- 專門顯示錯誤的子組件：validation-messages.component.ts
 
 ```js
 import { Component, Input } from "@angular/core";
@@ -31,7 +40,7 @@ import { FormControl } from "@angular/forms";
 @Component({
   selector: "validation-messages",
   template:
-    '<div class="error-message" *ngIf="errorMessage !== null">{{errorMessage}}</div>',
+    '<div *ngIf="errorMessage !== null">{{errorMessage}}</div>',
   styles: [".error-message{color:#DF7607;font-size: x-small;}"]
 })
 export class ValidationComponent {
@@ -53,14 +62,13 @@ export class ValidationComponent {
 }
 ```
 
----
-
 # 簡單的 html 驗證
 
-例如:在 post.component.html
+- 在 post.component.html
 
-```
+> 沒加`<form>`標籤的寫法
 
+```html
 <div class="item-list">
   <span>account</span>
   <input type="text" placeholder="請輸入帳號" [(ngModel)]="account"
@@ -70,43 +78,44 @@ export class ValidationComponent {
 </div>
 <button (click)="send()" [disabled]="aa.invalid">
   submit
-</button>
-    
+</button> 
 ```
 
-- 要把 input 變成控件,能夠使用 invalid,valid,touch,touched...等,就是加上模板變數 `#aa="ngModel"`
-- `<form>`標籤可加可不加
+>  要把 input 變成控件,能夠使用 invalid,valid,touch,touched...等,就是加上模板變數 `#aa="ngModel"`
 
-以下例子是有加的
+- 在 post.component.html
 
+> 有加`<form>`標籤的寫法
+
+```html
+<form #myForm="ngForm">
+  <div class="item-list">
+    <span>account</span>
+    <input type="text" placeholder="請輸入帳號"
+      [(ngModel)]="account"
+    name="account" #aa="ngModel" minlength="6"
+    pattern="^([a-zA-Z]+\d+|\d+[a-zA-Z]+)[a-zA-Z0-9]*$" required>
+    <validation-messages [control]="aa"></validation-messages>
+  </div>
+  <button (click)="submit(myForm)" 
+          [disabled]="myForm.form.invalid">submit
+  </button>
+</form>
 ```
-<div>
-  <form #myForm="ngForm">
-    <div class="item-list">
-      <span>account</span>
-      <input type="text" placeholder="請輸入帳號"
-       [(ngModel)]="account"
-      name="account" #aa="ngModel" minlength="6"
-      pattern="^([a-zA-Z]+\d+|\d+[a-zA-Z]+)[a-zA-Z0-9]*$" required>
-      <validation-messages [control]="aa"></validation-messages>
-    </div>
-    <button (click)="submit(myForm)" [disabled]="myForm.form.invalid">submit</button>
-  </form>
-</div>
-```
-- `<form>`標籤也加上模板變數後,在`<button>`的 disable 就能驗證整個表單內的元素是否都有效
+> `<form>`標籤也加上模板變數後,在`<button>`的 disable 就能驗證整個表單內的元素是否都有效
 
----
 
 # 用 directive 驗證
 
 我們可能有很多需要自製的驗證方式,
+
 所以除了原本 html 帶來的驗證方法,
+
 我們可以使用 directive 來幫目標`input`綁定錯誤事件
 
 ## 一般寫法
 
-在 fn-validator.directive.ts
+- 在 fn-validator.directive.ts
 
 ```js
 @Directive({
@@ -153,38 +162,38 @@ export class fnValidator implements Validator {
 }
 ```
 
-在要使用的 html 裡
+- 在要使用的 html 裡
 
-```
+```html
 <form #myForm="ngForm">
   <div class="item-list">
     <span>account</span>
-      <input type="text" placeholder="請輸入帳號"
-      [(ngModel)]="account" name="account" #aa="ngModel"
-      [fnName]="'userValidator'">
-      <validation-messages [control]="aa"></validation-messages>
-    </div>
-    <div class="item-list">
-      <span>password</span>
-      <input type="text" placeholder="請輸入密碼"
-      [(ngModel)]="password" name="password" #pp="ngModel"
-      [fnName]="'passwordValidator'">
-      <validation-messages [control]="pp"></validation-messages>
-    </div>
-    <button (click)="submit(myForm)"
-    [disabled]="myForm.form.invalid">submit</button>
-  </form>
+    <input type="text" placeholder="請輸入帳號"
+    [(ngModel)]="account" name="account" #aa="ngModel"
+    [fnName]="'userValidator'">
+    <validation-messages [control]="aa"></validation-messages>
+  </div>
+  <div class="item-list">
+    <span>password</span>
+    <input type="text" placeholder="請輸入密碼"
+    [(ngModel)]="password" name="password" #pp="ngModel"
+    [fnName]="'passwordValidator'">
+    <validation-messages [control]="pp"></validation-messages>
+  </div>
+  <button (click)="submit(myForm)"
+  [disabled]="myForm.form.invalid">submit</button>
+</form>
 ```
-
----
 
 ## 把驗證方法另外封裝
 
 其實驗證的模式很多種,
+
 我們會把經常用到的方法封裝到 service,
+
 讓其他模式下也能用
 
-在 fn-validator.directive.ts
+- 在 fn-validator.directive.ts
 
 ```js
 import {
@@ -217,7 +226,7 @@ export class fnValidator implements Validator {
 }
 ```
 
-在 validation.service.ts
+- 在 validation.service.ts
 
 ```js
 import { FormControl } from "@angular/forms";
@@ -250,36 +259,37 @@ export class ValidationService {
 }
 ```
 
-在要使用的 html 裡
+- 在要使用的 html 裡  一樣使用指令方式驗證
 
-```
+```html
 <form #myForm="ngForm">
   <div class="item-list">
     <span>account</span>
-      <input type="text" placeholder="請輸入帳號"
-      [(ngModel)]="account" name="account" #aa="ngModel"
-      [fnName]="'userValidator'">
-      <validation-messages [control]="aa"></validation-messages>
-    </div>
-    <div class="item-list">
-      <span>password</span>
-      <input type="text" placeholder="請輸入密碼"
-      [(ngModel)]="password" name="password" #pp="ngModel"
-      [fnName]="'passwordValidator'">
-      <validation-messages [control]="pp"></validation-messages>
-    </div>
-    <button (click)="submit(myForm)"
-    [disabled]="myForm.form.invalid">submit</button>
-  </form>
+    <input type="text" placeholder="請輸入帳號"
+    [(ngModel)]="account" name="account" #aa="ngModel"
+    [fnName]="'userValidator'">
+    <validation-messages [control]="aa"></validation-messages>
+  </div>
+  <div class="item-list">
+    <span>password</span>
+    <input type="text" placeholder="請輸入密碼"
+    [(ngModel)]="password" name="password" #pp="ngModel"
+    [fnName]="'passwordValidator'">
+    <validation-messages [control]="pp"></validation-messages>
+  </div>
+  <button (click)="submit(myForm)"
+  [disabled]="myForm.form.invalid">submit</button>
+</form>
 ```
----
 
 # 常見情境-確認密碼 Confirm Password
 
 因為需要一個被比較是否相等的控件,
+
 所以會另外做指令
 
-在 equal-validator.directive.ts
+- 在 equal-validator.directive.ts
+
 ```js
 @Directive({
   selector: '[validateEqual][formControlName],[validateEqual][formControl],[validateEqual][ngModel]',
@@ -300,31 +310,37 @@ export class EqualValidator implements Validator {
   }
 }
 ```
-在要使用的 html 裡
 
-```
+- 在要使用的 html 裡
+
+```html
 <form #myForm="ngForm">
   <div class="item-list">
     <span>account</span>
-      <input type="text" placeholder="請輸入帳號" [(ngModel)]="account" name="account" #aa="ngModel" 
-      [fnName]="'userValidator'">
-      <validation-messages [control]="aa"></validation-messages>
-    </div>
-    <div class="item-list">
-      <span>password</span>
-      <input type="text" placeholder="請輸入密碼" [(ngModel)]="password" name="password" #pp="ngModel"
-      [fnName]="'passwordValidator'">
-      <validation-messages [control]="pp"></validation-messages>
-    </div>
-    <div class="item-list">
-      <span>repeat</span>
-      <input type="text" placeholder="請重複密碼" [(ngModel)]="repeat" name="repeat" #rr="ngModel" validateEqual="password">
-    </div>
-    <validation-messages [control]="rr"></validation-messages>
-    <button (click)="submit(myForm)" [disabled]="myForm.form.invalid">submit</button>
-  </form>
+    <input  type="text" placeholder="請輸入帳號" [(ngModel)]="account" 
+            name="account" #aa="ngModel" 
+            [fnName]="'userValidator'">
+    <validation-messages [control]="aa"></validation-messages>
+  </div>
+  <div class="item-list">
+    <span>password</span>
+    <input  type="text" placeholder="請輸入密碼" [(ngModel)]="password" 
+            name="password" #pp="ngModel"
+            [fnName]="'passwordValidator'">
+    <validation-messages [control]="pp"></validation-messages>
+  </div>
+  <div class="item-list">
+    <span>repeat</span>
+    <input  type="text" placeholder="請重複密碼" [(ngModel)]="repeat" 
+            name="repeat" #rr="ngModel" 
+            validateEqual="password">
+  </div>
+  <validation-messages [control]="rr"></validation-messages>
+  <button (click)="submit(myForm)" 
+          [disabled]="myForm.form.invalid">submit</button>
+</form>
 ```
----
+
 
 # 模板變數(#name) *ngIf 與 [hidden]
 
@@ -335,13 +351,13 @@ export class EqualValidator implements Validator {
 而`[hidden]`它會在Dom裡並沒有被破壞只是看不見而已.
 
 曾在開發的時候,同個Component因為資料的不同,
+
 導致需要顯示的input也不盡相同
 
-```
+```html
 <div *ngIf="!topData">
  <input type="text" #account="ngModel"
-    [(ngModel)]="AgentAccountSel"
-  />
+    [(ngModel)]="AgentAccountSel"/>
   <validation-messages [control]="account"></validation-messages>
 </div>
 ....
@@ -364,7 +380,7 @@ export class EqualValidator implements Validator {
 
 因此要採用`[hidden]`的方式
 
-```
+```html
 <div [hidden]="!!topData">
  <input type="text" #account="ngModel"
     [(ngModel)]="AgentAccountSel"

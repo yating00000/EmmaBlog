@@ -1,19 +1,21 @@
 ---
-title: 路由參數 params queryParams
 date: 2018-09-14 11:42:29
-categories:
-  - angular
-tags:
-  - angular
-  - 學習筆記
-keywords:
-  - angular
-  - angular6
-  - angular route
-  - angular 路由
-  - params
-  - queryParams
-abbrlink: 69a67783
+title: 路由參數 params queryParams
+tags: [
+  "angular",
+  "學習筆記"
+]
+categories: [
+  "angular",
+]
+keywords: [
+    "angular",
+    "route",
+    "路由",
+    "params",
+    "queryParams"
+]
+comment: true
 ---
 
 - params 與 queryParams 區分
@@ -24,19 +26,21 @@ abbrlink: 69a67783
 <!--more-->
 
 # params 與 queryParams 區分
----
-```
-    //路由設定
-    export const MyRoutes: Routes = [
-        {path: ':type', component: MyComponent}
-    ];
-```
+
 ```
     //Sample URL
     http://somewhere/heroes?paramA=1
     http://somewhere/enemy?paramA=1
 ```
+
+```js
+    //路由設定
+    export const MyRoutes: Routes = [
+        {path: ':type', component: MyComponent}
+    ];
 ```
+
+```js
     //讀取
     this.paramsSubscription = this.route.params.subscribe((param: any) => {
         console.log('type',param['type']);
@@ -51,18 +55,20 @@ abbrlink: 69a67783
 在`?`前面即為 params, 在`?`後面即為 queryParams
 
 ```
+    //Sample URL
+    http://somewhere/heroes/5?paramA=1
+    http://somewhere/enemy/3?paramA=1
+```
+
+```js
     //路由設定
     export const MyRoutes: Routes = [
         {path: ':type', component: MyComponent}
         {path: ':type/:id', component: MyComponent}
     ];
 ```
-```
-    //Sample URL
-    http://somewhere/heroes/5?paramA=1
-    http://somewhere/enemy/3?paramA=1
-```
-```
+
+```js
     //讀取
     this.paramsSubscription = this.route.params.subscribe((param: any) => {
         console.log('type',param['type']);
@@ -77,7 +83,7 @@ abbrlink: 69a67783
 
 
 # URL 表達形式
----
+
 - 帶有查詢參數的URL： http://somewhere/heroes/5?paramA=1&paramB=6542
 
     params: `heroes/5`
@@ -91,16 +97,16 @@ abbrlink: 69a67783
     queryParams: `無`
 
 # 讀取 params 的幾種寫法
----
+
 ## 訂閱方式 Observable
-```
+```js
     this.activatedRoute.params.subscribe((param: any) => {
         console.log('type',param['type']);
     })
 ```
 
 ## 快照 Snapshot
-```
+```js
     this.activatedRoute.snapshot.params
     or
     this.activatedRoute.snapshot.params['type']
@@ -135,16 +141,17 @@ abbrlink: 69a67783
 ```
 
 # 讀取 queryParams 的寫法
----
+
 ## 訂閱方式 Observable
-```
+```js
     this.activatedRoute.queryParams.subscribe((param: any)=>{
         console.log('paramA',param['paramA']);
     });
 ```
 
 ## 快照 Snapshot
-```
+
+```js
     this.activatedRoute.snapshot.queryParams;
 ```
 
@@ -175,7 +182,7 @@ abbrlink: 69a67783
 ```
 
 # 讀取 fragment 的幾種寫法
----
+
 fragment 指網址`#`後面的參數
 
 ## 訂閱方式 Observable
@@ -186,17 +193,18 @@ fragment 指網址`#`後面的參數
 ```
 
 ## 快照 Snapshot
-```
+```js
     this.activatedRoute.snapshot.fragment;
 ```
 
 
 # 備註
----
-因網址傳送跟接收都是用字串,所以如果在讀取`params`,<br>
+
+因網址傳送跟接收都是用字串,所以如果在讀取`params`,
+
 在常見的抓取`:id` 的時候我們會用 `+` 號來讓它字串自動轉成數字
 
-```
+```js
     this.activatedRoute.params.subscribe((param: any) => {
         console.log('type',+param['type']);   //多了+號
     })

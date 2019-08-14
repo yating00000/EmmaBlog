@@ -1,17 +1,19 @@
 ---
-title: 使用websocket
-abbrlink: edbbafc0
 date: 2018-12-14 16:03:23
-categories:
-  - angular
-tags:
-  - angular
-  - 實作心得
+title: 使用websocket
+tags: [
+  "angular",
+  "實作心得"
+]
+categories: [
+  "angular",
+]
 keywords:
-  - angular
-  - angular6
-  - websocket
-description:
+  [
+    "angular",
+    "websocket",
+  ]
+comment: true
 ---
 
 - 一般用法
@@ -30,7 +32,6 @@ description:
 
 ```js
 //web.service.ts
-
 @Injectable()
 export class SocketService {
   private subject: Subject<MessageEvent>;
@@ -157,7 +158,7 @@ sendUser() {
 可是我們要怎麼分辨哪個數據是商品列表,
 所以上面的例子用過濾的方式
 
-```
+```js
 .pipe(
     filter(val => {
         return val.t == "product" && val.m == "list";
@@ -225,21 +226,25 @@ export class DataService {
 ```
 
 把後端接回來的值,
-我另外再用selfSubject去裝
+
+我另外再用selfSubject去裝,
+
 `count`是辨識碼,
+
 可以確定我next出去 後端回傳的資料是相對應的
-
-
----
 
 # 把資訊隱藏
 
 在檢查前後端數據,通常我們可以打開 F12 開發者工具中,
+
 按下 Network 裡去看 socket 雙方傳送的數據,
+
 但如果要正式上線就不太妥當
 
 所以在開發的時候,
+
 後端使用二進制的方式送來,
+
 而前端傳送過去的也要包成二進制
 
 ```js

@@ -1,18 +1,20 @@
 ---
-title: ng-directive
 date: 2018-09-14 11:04:22
-categories:
-  - angular
-tags:
-  - angular
-  - 學習筆記
+title: directive
+tags: [
+  "angular",
+  "學習筆記"
+]
+categories: [
+  "angular",
+]
 keywords:
-  - angular
-  - angular6
-  - ngStyle
-  - ngClass
-description: 
-abbrlink: ad6bc72f
+  [
+    "angular",
+    "ngStyle",
+    "ngClass",
+  ]
+comment: true
 ---
 
 - ngStyle的幾種寫法
@@ -20,30 +22,32 @@ abbrlink: ad6bc72f
 <!--more-->
 
 # ngStyle
----
+
 後面要指定的參數通常是 `CSS屬性`
 
-```
-    <div [ngStyle]="{'background-color':'green'}"></<div>
+```html
+<div [ngStyle]="{'background-color':'green'}"></<div>
 ```
 
 也可以這樣寫
 
-```
-    <div [style.background]="green}"></<div>
+```html
+<div [style.background]="green}"></<div>
 ```
 
 也可以使用三元運算子
 
-```
-    <div [ngStyle]="{'background-color':person.country === 'UK' ? 'green' : 'red' }"></<div>
+```html
+<div [ngStyle]="{'background-color':person.country === 'UK' ? 'green' : 'red' }"></<div>
 ```
 
 若要指定 `function` 的寫法
 
+```html
+[style.color]="getColor(person.country)"
 ```
-    [style.color]="getColor(person.country)"
 
+```js
     getColor(color:string){
         if(color == 'UK'){
             return 'green'
@@ -52,26 +56,25 @@ abbrlink: ad6bc72f
     }
 ```
 
-
 # ngClass
----
+
 第一个參數為Class類名稱，
 第二个參數為boolean值，
 如果為true就添加第一个参數的類
 
-```
-    [ngClass]="{'text-success':true}"
+```html
+[ngClass]="{'text-success':true}"
 ```
 
 也可以這樣寫
 
-```
-    [class.text-success]="person.country === 'UK'"
+```html
+[class.text-success]="person.country === 'UK'"
 ```
 
 可以一次新增多Class
 
-```
+```html
     [ngClass]="{
         'text-success':person.country === 'UK',
         'text-primary':person.country === 'USA',

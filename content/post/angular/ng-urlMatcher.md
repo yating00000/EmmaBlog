@@ -1,17 +1,18 @@
 ---
-title: UrlMatcher
 date: 2018-09-14 11:15:10
-categories:
-  - angular
-tags:
-  - angular
-  - 學習筆記
-keywords:
-  - angular
-  - angular6
-  - UrlMatcher
-description:
-abbrlink: c656b813
+title: UrlMatcher
+tags: [
+  "angular",
+  "學習筆記"
+]
+categories: [
+  "angular",
+]
+keywords: [
+    "angular",
+    "ng-template"
+]
+comment: true
 ---
 
 - UrlMatcher 意義
@@ -20,28 +21,27 @@ abbrlink: c656b813
 <!--more-->
 
 # UrlMatcher 意義
----
+
 就是驗證網址跟參數是否有符合規則
 
 
 # UrlMatcher 實際運用
----
 
 在路由中設定
 
-```
-    const appRoutes: Routes = [
-        {
-            path: "enemy",
-            component: MyComponent,
-            children: [
-                {
-                    matcher: mymatcher,  //寫這個後就不能再寫path
-                    component: ChildComponent
-                }
-            ]
-        }
-    ];
+```js
+const appRoutes: Routes = [
+    {
+        path: "enemy",
+        component: MyComponent,
+        children: [
+            {
+                matcher: mymatcher,  //寫這個後就不能再寫path
+                component: ChildComponent
+            }
+        ]
+    }
+];
 ```
 
 ```js
@@ -57,19 +57,20 @@ abbrlink: c656b813
 ```
 
 當網址 `enemy/bbb` 將匹配成功
+
 `enemy/aaa`  就會跳出錯誤訊息 `Error: Cannot match any routes.`
 
 # 備註
----
-```
-    @NgModule({
-        imports: [RouterModule.forChild([
-            {
-                matcher : matcher, //這裏不要使用匿名方法或則箭頭函數哦, aot 不過
-                component : FirstComponent,
-                children : []
-            }
-        ])],
-        exports: [RouterModule],
-    })
+
+```js
+@NgModule({
+    imports: [RouterModule.forChild([
+        {
+            matcher : matcher, //這裏不要使用匿名方法或則箭頭函數哦, aot 不過
+            component : FirstComponent,
+            children : []
+        }
+    ])],
+    exports: [RouterModule],
+})
 ```

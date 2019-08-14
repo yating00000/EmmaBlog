@@ -1,17 +1,20 @@
 ---
-title: angular module概念
 date: 2018-09-14 11:24:46
-categories:
-  - angular
-tags:
-  - angular
-  - 學習筆記
+title: angular module概念
+tags: [
+  "angular",
+  "學習筆記"
+]
+categories: [
+  "angular",
+]
 keywords:
-  - angular
-  - angular6
-  - 模塊
-description:
-abbrlink: 3da33677
+  [
+    "angular",
+    "模塊",
+    "module",
+  ]
+comment: true
 ---
 
 - 模塊的多種劃分
@@ -19,7 +22,7 @@ abbrlink: 3da33677
 <!--more-->
 
 # 模塊的多種劃分
----
+
 - 根模塊: 負責全局的路由
 
 - 核心模塊: 負責全局的Service,也可以定義只在根模塊使用的組件,並只能由根模塊引入一次且不再導出
@@ -34,8 +37,8 @@ abbrlink: 3da33677
 
 
 # 模塊的匯入順序
----
-```
+
+```js
     imports: [
       BrowserModule,
       FormsModule,
@@ -44,13 +47,14 @@ abbrlink: 3da33677
     ]
 ```
 
-看看該模塊的 imports 數組。注意，AppRoutingModule 是最後一個。<br>
+看看該模塊的 imports 數組。注意，AppRoutingModule 是最後一個。
+
 最重要的是，它位于 HeroesModule 之後。
 
 
 - 如果更換順序的話,如下
 
-```
+```js
     imports: [
       BrowserModule,
       FormsModule,
@@ -59,14 +63,14 @@ abbrlink: 3da33677
     ]
 ```
 
-例如, 如果你 app-routing 最後是處理 404 ,<br>
-但是在 app-module 卻把 routing 限於特性模塊 HeroesModule, <br>
+例如, 如果你 app-routing 最後是處理 404 ,
+
+但是在 app-module 卻把 routing 限於特性模塊 HeroesModule,
+
 那麼 HeroesModule 的 routing 就進不去了。因為已經被匹配掉了.
 
-
-
 # 參考至
---- 
+
 >`<https://www.cnblogs.com/yitim/p/angular2-study-module-framework.html>`
 
 

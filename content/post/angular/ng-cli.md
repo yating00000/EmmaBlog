@@ -1,18 +1,20 @@
 ---
-title: angular-cli 相關指令
 date: 2018-09-12 16:44:13
-categories:
-  - angular
-tags:
-  - angular
-  - 學習筆記
+title: angular-cli 相關指令
+tags: [
+  "angular",
+  "學習筆記"
+]
+categories: [
+  "angular",
+]
 keywords:
-  - angular
-  - angular6
-  - angular spec
-  - angular cli
-description:
-abbrlink: d858281d
+  [
+    "angular",
+    "spec",
+    "cli",
+  ]
+comment: true
 ---
 
 - CLI指令
@@ -20,7 +22,7 @@ abbrlink: d858281d
 <!--more-->
 
 # CLI指令
----
+
 ```js
 ng generate component heroes //ng g c heros
 ```
@@ -45,7 +47,7 @@ ng generate module app-routing --flat --module=app
 - --module=app 則是告知CLI註冊這個Routing在AppModule的imports裡.
 
 # 如何新增檔案卻不新增 spec 的幾種方式
----
+
 ## Angular2~5
 
 第一種
@@ -118,5 +120,5 @@ ng generate c mycomponent --no-spec
 ```
 
 # 參考至
->- https://stackoverflow.com/questions/50193766/generating-components-without-spec-ts-in-angular-6?rq=1
+> https://stackoverflow.com/questions/50193766/generating-components-without-spec-ts-in-angular-6?rq=1
 

@@ -1,21 +1,23 @@
 ---
-title: ngx-translate
-abbrlink: 4a106377
 date: 2018-12-17 09:28:45
-categories:
-  - angular
-tags:
-  - angular
-  - 實作心得
+title: ngx-translate
+tags: [
+  "angular",
+  "實作心得"
+]
+categories: [
+  "angular",
+]
 keywords:
-  - angular
-  - angular6
-  - paginator
-  - translate
-  - onLangChange
-  - items_per_page
-  - MatPaginatorIntl
-description:
+  [
+    "angular",
+    "paginator",
+    "translate",
+    "onLangChange",
+    "items_per_page",
+    "MatPaginatorIntl"
+  ]
+comment: true
 ---
 
 - 安裝簡述
@@ -27,14 +29,14 @@ description:
 其實網上好多教學,
 所以簡單紀錄
 
-```js
+```
 npm install @ngx-translate/core --save
 npm install @ngx-translate/http-loader --save
 ```
 
-```js
-//app.module.ts
+- app.module.ts
 
+```js
 export function createTranslateLoader(http: HttpClient) {
     //i18n的資料夾位置
     return new TranslateHttpLoader(http, "./assets/i18n/", ".json");
@@ -61,9 +63,9 @@ export function createTranslateLoader(http: HttpClient) {
 export class AppModule { }
 ```
 
-```js
-//share.module.ts
+- share.module.ts
 
+```js
 @NgModule({
   imports: [
     CommonModule,
@@ -81,9 +83,9 @@ export class AppModule { }
 export class SharedModule { }
 ```
 
-```js
-//app.component.ts
+- app.component.ts
 
+```js
 export class AppComponent  {
   defaultLang = "en";
 
@@ -94,11 +96,10 @@ export class AppComponent  {
   }
 }
 ```
----
 
 # 一般用法
 
-- 在需要使用的功能模塊
+- 切換語系
 
 ```js
 @Component({
@@ -121,13 +122,7 @@ export class PostComponent implements OnInit {
 }
 ```
 
-- placeholder
-
-```
-<input type="text" [placeholder]="'import_account' | translate">
-```
-
-- 可直接在Component裡翻譯字串
+- 翻譯字串
 
 ```js
 constructor(private translate: TranslateService) {}
@@ -138,15 +133,19 @@ translate(str:string):string{
 
 ```
 
----
+- placeholder
+
+```html
+<input type="text" [placeholder]="'import_account' | translate">
+```
 
 # `mat-paginator`的翻譯
 
-接下來紀錄一下在`Angular-Material`的頁碼如何翻譯.
+接下來紀錄一下在`angular - material`的頁碼如何翻譯.
 
-`Paginator`安裝過程請參照官網,
+`material`安裝過程請參照官網
 
-然後在shareModule裡
+- shareModule
 
 ```js
 @NgModule({
@@ -168,10 +167,9 @@ translate(str:string):string{
 export class SharedModule { }
 ```
 
-在需要的模塊上使用
-```
-//post.component.ts
+- 在post.component.ts
 
+```js
 export class PostComponent implements OnInit {
   PAGESIZEOPTIONS=[5,10,15]
 
@@ -182,9 +180,10 @@ export class PostComponent implements OnInit {
     console.log($event)
   }
 }
+```
+- post.component.html
 
-//post.component.html
-
+```html
 <mat-paginator
       [pageIndex]="1"
       [length]="0"
@@ -256,17 +255,15 @@ export class CustomMatPaginatorIntl extends MatPaginatorIntl {
 
 ```js
 //./assets/i18n/tw.json
-
   "items_per_page": "筆數",
   "next_page": "下一頁",
   "previous_page": "上一頁",
   "of_label": "of",
-
 ```
 
-```js
-//share.module.ts
+- share.module.ts
 
+```js
 @NgModule({
   imports: [
     CommonModule,
