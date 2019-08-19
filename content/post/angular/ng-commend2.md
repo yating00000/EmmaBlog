@@ -1,6 +1,6 @@
 ---
-date: 2018-09-14 11:04:22
-title: directive
+date: 2018-09-14 10:46:22
+title: Angular指令 2 - 屬性型
 tags: [
   "angular",
   "學習筆記"
@@ -8,12 +8,11 @@ tags: [
 categories: [
   "angular",
 ]
-keywords:
-  [
-    "angular",
-    "ngStyle",
-    "ngClass",
-  ]
+keywords: [
+  "angular",
+  "ngStyle",
+  "ngClass"
+]
 comment: true
 ---
 

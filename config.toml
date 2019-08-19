@@ -73,6 +73,8 @@ defaultContentLanguage = "zh-tw"           # Default language to use
   photoswipe = true         # see https://github.com/dimsemenov/PhotoSwipe            # 是否启用PhotoSwipe（图片可点击）
   # contentCopyright = '<a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a>'
 
+  google_verification = "7I3RT3QmSbamuKSh45l1xpPjdu2XmgwVgjamJZuDKfk"  # Google_Verification         # 谷歌
+
   # Link custom CSS and JS assets
   #   (relative to /static/css and /static/js respectively)
   customCSS = []            # if ['custom.css'], load '/static/css/custom.css' file
