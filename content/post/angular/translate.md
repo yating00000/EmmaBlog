@@ -139,11 +139,13 @@ translate(str:string):string{
 <input type="text" [placeholder]="'import_account' | translate">
 ```
 
-# `mat-paginator`的翻譯
+# `mat-paginator`頁碼的翻譯
 
 接下來紀錄一下在`angular - material`的頁碼如何翻譯.
 
-`material`安裝過程請參照官網
+`material`安裝過程請參照官網,
+
+先匯入`MatPaginatorModule`
 
 - shareModule
 
@@ -193,8 +195,6 @@ export class PostComponent implements OnInit {
 >
 </mat-paginator>
 ```
-
-![](/img/translate_1.png)
 
 那很多功能模塊都會有頁碼,
 
@@ -289,5 +289,3 @@ export class CustomMatPaginatorIntl extends MatPaginatorIntl {
 export class SharedModule {}
 
 ```
-
-![](/img/translate_2.png)

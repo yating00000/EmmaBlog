@@ -8,11 +8,10 @@ tags: [
 categories: [
   "angular",
 ]
-keywords:
-  [
-    "angular",
-    "websocket",
-  ]
+keywords: [
+  "angular",
+  "websocket",
+]
 comment: true
 ---
 
@@ -68,12 +67,10 @@ export class SocketService {
     return Subject.create(observer, observable).share();
   }
 }
-
 ```
 
 ```js
 //data.service.ts
-
 @Injectable()
 export class DataService {
     private wsDatas: BehaviorSubject<any>;
@@ -103,14 +100,12 @@ export class DataService {
         return this.wsDatas.asObservable();
     }
 }
-
 ```
 
 接下來就是開始跟後端連線
 
 ```js
 //app.component.ts
-
 login(){
     this.dataService.webConnet();
     this.dataService.isWebSocketIn().subscribe(
@@ -176,7 +171,6 @@ sendUser() {
 
 ```js
 //data.service.ts
-
 @Injectable()
 export class DataService {
     private wsDatas: BehaviorSubject<any>;
@@ -222,7 +216,6 @@ export class DataService {
         );
     }
 }
-
 ```
 
 把後端接回來的值,
@@ -249,7 +242,6 @@ export class DataService {
 
 ```js
 //web.service.ts
-
 @Injectable()
 export class SocketService {
   private subject: Subject<MessageEvent>;
@@ -298,12 +290,10 @@ export class SocketService {
     return Subject.create(observer, observable).share();
   }
 }
-
 ```
 
 ```js
 //data.service.ts
-
 webConnet() {
         this.wsDatas = <BehaviorSubject<any>>this.wsService.connect()
     .pipe(

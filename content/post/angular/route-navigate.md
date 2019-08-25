@@ -9,11 +9,11 @@ categories: [
   "angular",
 ]
 keywords: [
-    "angular",
-    "route",
-    "路由",
-    "navigate",
-    "navigateByUrl"
+  "angular",
+  "route",
+  "路由",
+  "navigate",
+  "navigateByUrl"
 ]
 comment: true
 ---
