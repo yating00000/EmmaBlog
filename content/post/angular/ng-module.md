@@ -11,8 +11,8 @@ categories: [
 keywords:
   [
     "angular",
-    "模塊",
-    "module",
+    "angular 模塊",
+    "angular module",
   ]
 comment: true
 ---

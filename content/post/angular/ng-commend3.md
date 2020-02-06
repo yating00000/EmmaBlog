@@ -10,8 +10,8 @@ categories: [
 ]
 keywords: [
   "angular",
-  "ng-container",
-  "ng-template"
+  "angular ng-container",
+  "angular ng-template"
 ]
 comment: true
 ---

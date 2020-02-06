@@ -11,7 +11,7 @@ categories: [
 keywords:
   [
     "angular",
-    "attr",
+    "angular attr",
   ]
 comment: true
 ---

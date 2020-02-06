@@ -11,8 +11,8 @@ categories: [
 keywords:
   [
     "angular",
-    "spec",
-    "cli",
+    "angular spec",
+    "angular cli",
   ]
 comment: true
 ---

@@ -11,11 +11,11 @@ categories: [
 keywords:
   [
     "angular",
-    "paginator",
-    "translate",
-    "onLangChange",
-    "items_per_page",
-    "MatPaginatorIntl"
+    "angular paginator",
+    "angular translate",
+    "angular onLangChange",
+    "angular items_per_page",
+    "angular MatPaginatorIntl"
   ]
 comment: true
 ---
@@ -287,5 +287,7 @@ export class CustomMatPaginatorIntl extends MatPaginatorIntl {
   ]
 })
 export class SharedModule {}
-
 ```
+
+# 參考至
+> https://github.com/angular/material2/issues/5573

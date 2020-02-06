@@ -10,13 +10,13 @@ categories: [
 ]
 keywords: [
   "angular",
-  "route",
-  "路由",
-  "子路由",
-  "延遲子路由",
-  "輔助子路由",
-  "路由模塊",
-  "子組件"
+  "angular route",
+  "angular 路由",
+  "angular 子路由",
+  "angular 延遲子路由",
+  "angular 輔助子路由",
+  "angular 路由模塊",
+  "angular 子組件"
 ]
 comment: true
 ---
@@ -49,7 +49,7 @@ app
 
 - `app-routing.module.ts`
 
- none
+none
 
 - `app.component.html`
 
@@ -74,14 +74,12 @@ export class AppModule {}
 - `app-routing.module.ts`
 
 ```js
-const routes: Routes = [
-  { path: 'child', component: ChildComponent }
-];
+const routes: Routes = [{ path: "child", component: ChildComponent }];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
 ```
 
 - `app.component.html`
@@ -160,14 +158,12 @@ export class ChildModule {}
 - `app-routing.module.ts`
 
 ```js
-const routes: Routes = [
-  { path: 'child', component: ChildComponent }
-];
+const routes: Routes = [{ path: "child", component: ChildComponent }];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
 ```
 
 - `app.component.html`
@@ -188,7 +184,6 @@ export class AppRoutingModule { }
 export class AppModule {}
 ```
 
-
 - `child.module.ts`
 
 ```js
@@ -201,18 +196,17 @@ export class AppModule {}
 export class ChildModule {}
 ```
 
-
 ## 功能模塊
 
-> 通常ShareModule就是如此,
-或是私有的service 或 指令 混合成的功能組件,
-可方便其他module 匯入來用
+> 通常 ShareModule 就是如此,
+> 或是私有的 service 或 指令 混合成的功能組件,
+> 可方便其他 module 匯入來用
 
 - `app-routing.module.ts`
 
 none
 
-- 任何要使用的html
+- 任何要使用的 html
 
 ```html
 <app-child></app-child>
@@ -259,10 +253,10 @@ app
     - app-routing.module.ts
     - app.module.ts
 ```
+
 > 若有設定自己的路由模塊,就不可能是子組件跟功能模塊了
 
->以下分類 `子路由與延遲子路由`
-
+> 以下分類 `子路由與延遲子路由`
 
 ## 子路由
 
@@ -301,8 +295,8 @@ export class AppModule {}
 ```js
 const routes: Routes = [
   {
-    path: 'child',
-    component:ChildComponent
+    path: "child",
+    component: ChildComponent
   }
 ];
 
@@ -332,8 +326,8 @@ export class ChildModule {}
 ```js
 const routes: Routes = [
   {
-    path: 'child',
-    loadChildren: 'src/app/child/child.module#ChildModule'
+    path: "child",
+    loadChildren: "src/app/child/child.module#ChildModule"
   }
 ];
 
@@ -367,8 +361,8 @@ export class AppModule {}
 ```js
 const routes: Routes = [
   {
-    path: '',
-    component:ChildComponent
+    path: "",
+    component: ChildComponent
   }
 ];
 
@@ -390,6 +384,3 @@ export class ChildRoutingModule {}
 })
 export class ChildModule {}
 ```
-
-
-

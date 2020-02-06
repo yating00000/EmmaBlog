@@ -10,8 +10,8 @@ categories: [
 ]
 keywords: [
   "angular",
-  "ngStyle",
-  "ngClass"
+  "angular ngStyle",
+  "angular ngClass"
 ]
 comment: true
 ---

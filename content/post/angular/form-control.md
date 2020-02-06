@@ -10,13 +10,13 @@ categories: [
 ]
 keywords:
   [
-    "angular",
-    "form",
-    "validator",
-    "formbuilder",
-    "FormControl",
-    "formGroup",
-    "formControlName"
+    "angular angular",
+    "angular form",
+    "angular validator",
+    "angular formbuilder",
+    "angular FormControl",
+    "angular formGroup",
+    "angular formControlName"
   ]
 comment: true
 ---

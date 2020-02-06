@@ -10,7 +10,7 @@ categories: [
 ]
 keywords: [
     "angular",
-    "ngModel"
+    "angular ngModel"
 ]
 comment: true
 ---

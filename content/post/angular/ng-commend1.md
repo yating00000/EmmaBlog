@@ -10,8 +10,8 @@ categories: [
 ]
 keywords: [
   "angular",
-  "屬性型的指令",
-  "結構型的指令"
+  "angular 屬性型的指令",
+  "angular 結構型的指令"
 ]
 comment: true
 ---

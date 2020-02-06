@@ -10,7 +10,7 @@ categories: [
 ]
 keywords: [
     "angular",
-    "ng-template"
+    "angular ng-template"
 ]
 comment: true
 ---

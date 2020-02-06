@@ -1,5 +1,5 @@
 ---
-date: 2018-12-14 15:19:09
+date: 2018-10-26 10:34:13
 title: 路由守衛
 tags: [
   "angular",
@@ -10,10 +10,10 @@ categories: [
 ]
 keywords: [
     "angular",
-    "route",
-    "路由",
-    "guard",
-    "Observable"
+    "angular route",
+    "angular 路由",
+    "angular guard",
+    "angular Observable"
 ]
 comment: true
 ---

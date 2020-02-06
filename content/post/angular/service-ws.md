@@ -10,7 +10,7 @@ categories: [
 ]
 keywords: [
   "angular",
-  "websocket",
+  "angular websocket",
 ]
 comment: true
 ---

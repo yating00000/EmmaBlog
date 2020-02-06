@@ -10,10 +10,10 @@ categories: [
 ]
 keywords: [
   "angular",
-  "route",
-  "路由",
-  "navigate",
-  "navigateByUrl"
+  "angular route",
+  "angular 路由",
+  "angular navigate",
+  "angular navigateByUrl"
 ]
 comment: true
 ---

@@ -10,11 +10,11 @@ categories: [
 ]
 keywords: [
   "angular",
-  "route",
-  "路由",
-  "子路由",
-  "延遲子路由",
-  "輔助子路由"
+  "angular route",
+  "angular 路由",
+  "angular 子路由",
+  "angular 延遲子路由",
+  "angular 輔助子路由"
 ]
 comment: true
 ---
