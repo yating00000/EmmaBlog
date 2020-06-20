@@ -3,14 +3,15 @@ date: 2020-06-20 10:13:45
 title: datetimepicker
 tags: ["angular", "實作心得"]
 categories: ["angular"]
-keywords: [
-    "angular", 
-    "angular datetimepicker", 
-    "angular timepicker", 
+keywords:
+  [
+    "angular",
+    "angular datetimepicker",
+    "angular timepicker",
     "angular datepicker",
-    "owl-date-time"
-    "angular-material-components"
-]
+    "owl-date-time",
+    "angular-material-components",
+  ]
 comment: true
 ---
 
@@ -215,7 +216,6 @@ moment(this.ee.value).format();
 <validation-messages [control]="ee"></validation-messages>
 ```
 
-
 ## 其他狀況
 
 如果專案裡面所要的時間選擇器，
@@ -282,5 +282,3 @@ export class CustomerDetailComponent implements OnInit, OnChanges {
 </div>
 <validation-messages [control]="form.controls.birthday"></validation-messages>
 ```
-
-
