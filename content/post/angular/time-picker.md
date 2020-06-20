@@ -23,30 +23,48 @@ comment: true
 # 套件選擇與說明
 
 因 Angular Materia 的時間套件只能年月日，
+
 但是工作上需要使用到時分秒，
+
 早期使用都是用 `owl-date-time` 這個套件：
+
 https://github.com/DanielYKPan/date-time-picker
 
+
+
 那相關的使用方式，可參閱我在鐵人賽所寫的：
+
 https://ithelp.ithome.com.tw/articles/10226541
+
 
 ---
 
 然而現在因考慮到更新套件的作者有無`定期更新`!!
+
 而且 angular 官方又是一直在持續更新版本，
+
 所以考慮再三之下，
+
 轉移到目前一直有在更新套件的 `angular-material-components`，
+
 https://github.com/h2qutc/angular-material-components
 
+
+
 那這套本身除了 datetimepicker，
+
 作者還有做 colorpicker 等等一些小插件，弄成一包供大家使用。
 
+
 > 本文只專注在`datetimepicker`上
+
 
 # 初始建置
 
 因為很多 `component` 都會用到 datetimepicker，
+
 因此我會先把他包成一塊`Module` 方便共用。
+
 
 ```ts
 import { NgModule } from "@angular/core";
@@ -186,9 +204,9 @@ export class SearchDateComponent {
 
 要取得資料時：
 
-```ts
-moment(this.ee.value).format();
-```
+> `moment(this.ee.value).format();`
+
+---
 
 - html
 
@@ -268,6 +286,8 @@ export class CustomerDetailComponent implements OnInit, OnChanges {
   }
 }
 ```
+
+---
 
 - html
 
